@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import Webcam from "react-webcam";
 import takePhoto from "./TakePhoto.svg";
 import { track } from "framer-motion/client";
-
+import {instanceAxios} from "../../../../httpConfig.ts"
 interface GeolocationPosition {
   latitude: number;
   longitude: number;
@@ -74,7 +74,32 @@ export default () => {
       image: dataUri,
       geolocation,
     });
-    setImageIsInputed(false);
+
+
+    instanceAxios.post("/submissions", {
+      image : dataUri,
+      latitude: geolocation?.latitude,
+      longitude: geolocation?.longitude,
+      
+    }).then(
+      (data) => {
+
+
+        console.log(data)
+
+
+
+
+      }
+    )
+
+
+
+
+
+
+
+    // setImageIsInputed(false);
     setGeolocation(null);
     setDataUri('');
   };

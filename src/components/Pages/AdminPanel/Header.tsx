@@ -3,8 +3,8 @@ import { IoSearchOutline, IoNotificationsOutline } from 'react-icons/io5';
 
 const Header: React.FC = () => {
   return (
-    <header className="bg-white shadow-sm">
-      <div className="flex items-center justify-between px-6 py-3">
+    <header className="bg-white shadow-lg w-full h-full rounded-[20px]">
+      <div className="flex h-full items-center justify-between px-6 py-3">
         <div className="flex-1 max-w-xl">
           <div className="relative">
             <span className="absolute inset-y-0 left-0 flex items-center pl-3">

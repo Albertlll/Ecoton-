@@ -15,7 +15,7 @@ const Sidebar: React.FC = () => {
 
 
   return (
-    <div className="bg-white w-64 h-full shadow-lg">
+    <div className="bg-white w-full h-full shadow-lg rounded-[20px]">
       <div className="flex items-center justify-center h-16 border-b">
         <span className="text-2xl font-semibold text-green-500">Экодруг</span>
       </div>
@@ -24,7 +24,7 @@ const Sidebar: React.FC = () => {
         <SidebarItem active={0 == activeIndex} onClick={setActiveIndex} index={0} icon={<IoHomeOutline />} text="Главная" path="/admin" />
         <SidebarItem active={1 == activeIndex} onClick={setActiveIndex} index={1} icon={<IoMapOutline />} text="Карта" path="/admin/map" />
         <SidebarItem active={2 == activeIndex} onClick={setActiveIndex} index={2} icon={<IoBookOutline />} text="Книга" path="/admin/book" />
-        <SidebarItem active={3 == activeIndex} onClick={setActiveIndex} index={3} icon={<IoListOutline />} text="Задание" path="/admin/task" />
+        <SidebarItem active={3 == activeIndex} onClick={setActiveIndex} index={3} icon={<IoListOutline />} text="Задание" path="/admin/tasks" />
       </nav>
     </div>
   );
