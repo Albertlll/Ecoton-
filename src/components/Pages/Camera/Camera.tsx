@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Webcam from "react-webcam";
 import takePhoto from "./TakePhoto.svg";
+import { track } from "framer-motion/client";
 
 interface GeolocationPosition {
   latitude: number;
@@ -13,6 +14,8 @@ export default () => {
   const [dataUri, setDataUri] = useState('');
   const [geolocation, setGeolocation] = useState<GeolocationPosition | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(false);
+
+  const [geoDisabled, setGeoDisabled] = useState<boolean>(true)
   const webcamRef = useRef<Webcam>(null);
 
   const videoConstraints = {
@@ -41,7 +44,7 @@ export default () => {
             setIsLoading(false);
           },
           (error) => {
-            console.error("Error getting geolocation:", error);
+            setGeoDisabled(true)
             setIsLoading(false);
           }
         );
@@ -60,6 +63,13 @@ export default () => {
 
   const handleConfirm = () => {
     // Here you would typically send the data to the server
+
+    if (geolocation === null) {
+      
+    }
+
+
+
     console.log("Sending data to server:", {
       image: dataUri,
       geolocation,
@@ -116,6 +126,7 @@ export default () => {
                   >
                     Отмена
                   </button>
+
                   <button
                     onClick={handleConfirm}
                     className="bg-green-500 text-white px-4 py-2 rounded"
@@ -123,6 +134,8 @@ export default () => {
                     Отправка
                   </button>
                 </div>
+
+                <div className=" text-[12px] text-right">Внимание! Для отправки необходимо разрешения использования геопозии</div>
               </div>
             </motion.div>
           </>

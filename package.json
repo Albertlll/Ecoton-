@@ -11,15 +11,14 @@
   },
   "dependencies": {
     "@gsap/react": "^2.1.1",
-    "@react-google-maps/api": "^2.19.3",
-    "@twa-dev/sdk": "^7.10.1",
-    "exif-js": "^2.3.0",
+    "@pbe/react-yandex-maps": "^1.2.5",
     "flubber": "^0.4.2",
     "framer-motion": "^11.5.4",
     "lucide-react": "^0.441.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
-    "react-html5-camera-photo": "^1.5.11",
+    "react-icons": "^5.3.0",
+    "react-router-dom": "^6.26.2",
     "react-webcam": "^7.2.0"
   },
   "devDependencies": {
