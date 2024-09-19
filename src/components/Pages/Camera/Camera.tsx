@@ -1,8 +1,7 @@
-import React, { useState, useRef, useEffect, useCallback } from "react";
+import { useState, useRef, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Webcam from "react-webcam";
 import takePhoto from "./TakePhoto.svg";
-import { track } from "framer-motion/client";
 import {instanceAxios} from "../../../../httpConfig.ts"
 interface GeolocationPosition {
   latitude: number;
@@ -13,7 +12,7 @@ export default () => {
   const [imageIsInputed, setImageIsInputed] = useState<boolean>(false);
   const [dataUri, setDataUri] = useState('');
   const [geolocation, setGeolocation] = useState<GeolocationPosition | null>(null);
-  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [dataLoaded, setDataLoaded] = useState<string | null>(null);
 
   const [geoDisabled, setGeoDisabled] = useState<boolean>(true)
   const webcamRef = useRef<Webcam>(null);
@@ -31,42 +30,77 @@ export default () => {
     setImageIsInputed(true);
   }, [webcamRef]);
 
+
+  const getGeoPermissions = () => {
+    if ("geolocation" in navigator) {
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          setGeolocation({
+            latitude: position.coords.latitude,
+            longitude: position.coords.longitude,
+          });
+          setGeoDisabled(false)
+
+        },
+        (error) => {
+          setGeoDisabled(true)
+        }
+      );
+    } else {
+      console.error("Geolocation is not supported by this browser.");
+    }
+  }
+
   useEffect(() => {
     if (imageIsInputed) {
-      setIsLoading(true);
-      if ("geolocation" in navigator) {
-        navigator.geolocation.getCurrentPosition(
-          (position) => {
-            setGeolocation({
-              latitude: position.coords.latitude,
-              longitude: position.coords.longitude,
-            });
-            setIsLoading(false);
-          },
-          (error) => {
-            setGeoDisabled(true)
-            setIsLoading(false);
-          }
-        );
-      } else {
-        console.error("Geolocation is not supported by this browser.");
-        setIsLoading(false);
-      }
     }
+
+    getGeoPermissions();
   }, [imageIsInputed]);
 
   const handleCancel = () => {
     setImageIsInputed(false);
+    setGeoDisabled(true);
     setGeolocation(null);
+    setDataLoaded(null);
     setDataUri('');
   };
+
+
+  const handleJustSender = () => {
+
+
+
+
+    instanceAxios.post("/api/v1/submissions", {
+      image : "dataUri",
+      latitude: 55.777777,
+      longitude: 37.374444,
+      
+    }).then( (data) => {
+        setDataLoaded(data.data.object_class);
+      }
+    )
+  }
+
+
+
+
+
+  
+
+
+
+
+
 
   const handleConfirm = () => {
     // Here you would typically send the data to the server
 
-    if (geolocation === null) {
-      
-    }
+    // if (geolocation == null) {
+    //   getGeoPermissions()
+    //   return;
+    // }
 
 
 
@@ -76,32 +110,45 @@ export default () => {
     });
 
 
-    instanceAxios.post("/submissions", {
-      image : dataUri,
-      latitude: geolocation?.latitude,
-      longitude: geolocation?.longitude,
-      
-    }).then(
-      (data) => {
+    // 55.777777
+    // 37.374444
 
+    if (geolocation)  {
 
-        console.log(data)
+      instanceAxios.post("/api/v1/submissions", {
+        image : dataUri,
+        latitude: geolocation?.latitude,
+        longitude: geolocation?.longitude,
+        
+      }).then(
+        async (data) => {
+  
+          setDataLoaded(data.data.object_class);
+          
+        }
+      )
 
-
-
-
-      }
-    )
-
-
-
+    }
+    else{
+      instanceAxios.post("/api/v1/submissions", {
+        image : dataUri,
+        latitude: 55.777777,
+        longitude: 37.374444,
+        
+      }).then(
+        async (data) => {
+  
+          setDataLoaded(data.data.object_class);
+          
+        }
+      )
+    }
 
 
 
 
     // setImageIsInputed(false);
     setGeolocation(null);
-    setDataUri('');
   };
 
   return (
@@ -140,9 +187,21 @@ export default () => {
             >
               <div className="bg-white p-6 rounded-lg max-w-md w-full">
                 <h2 className="text-xl mb-4">Подтверждение фотографии</h2>
+                <div className="relative w-full h-auto">
+
+                <h2 className="absolute -translate-x-[50%] -translate-y-[125%] mt-[50%] ml-[50%]">
+                  {dataLoaded}
+                </h2>
+
                 {dataUri && (
-                  <img src={dataUri} alt="Captured" className="w-full mb-4 rounded" />
+                  <motion.img initial="visible" animate={dataLoaded == null ? "visible" : "hidden"} variants={{visible: { opacity: 1 }, hidden: { opacity: 0 }}} src={dataUri} alt="Captured" className=" w-full mb-4 rounded" />
                 )}
+
+
+
+
+                </div>
+     
     
                 <div className="flex justify-end mt-4">
                   <button

@@ -17,19 +17,19 @@ const Header: React.FC = () => {
             />
           </div>
         </div>
-        <div className="flex items-center">
-          <button className="text-gray-500 hover:text-gray-700 mr-4">
+        {/* <div className="flex items-center"> */}
+          {/* <button className="text-gray-500 hover:text-gray-700 mr-4">
             <IoNotificationsOutline className="text-2xl" />
-          </button>
-          <div className="flex items-center">
+          </button> */}
+          {/* <div className="flex items-center">
             <img
               src="https://placekitten.com/40/40"
               alt="User Avatar"
               className="w-8 h-8 rounded-full mr-2"
             />
             <span className="text-sm font-medium text-gray-700">Руслан Б.</span>
-          </div>
-        </div>
+          </div> */}
+        {/* </div> */}
       </div>
     </header>
   );

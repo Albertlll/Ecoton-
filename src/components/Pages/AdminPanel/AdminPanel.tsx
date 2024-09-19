@@ -9,6 +9,29 @@ import Reports from './components/Reports';
 import { div } from 'framer-motion/client';
 
 const AdminPanel: React.FC = () => {
+  const STAT = 
+{
+  "statistics": {
+    "Урагус сибирский": 5,
+    "Серый сорокопут": 2,
+    "Рыжая вечерница": 0,
+    "Горностай": 3,
+    "Хохлатка полая": 1,
+    "Белоспинный дятел": 4,
+    "Обыкновенная кутора": 0,
+    "Обыкновенный еж": 6,
+    "Зимородок": 2,
+    "Удод": 1,
+    "Незабудка болотная": 8,
+    "Филин": 1,
+    "Лесной хорек": 0,
+    "Лютик длиннолистный": 3
+  }
+}
+
+
+
+
   return (
 
     <div className=' p-[20px] bg-[#F5F6F7] grid grid-rows-6 grid-cols-9 w-full h-full gap-[20px]'>
@@ -31,6 +54,11 @@ const AdminPanel: React.FC = () => {
            </Routes>
          </main>
       </div>
+
+
+
+
+
 
 
     </div>
