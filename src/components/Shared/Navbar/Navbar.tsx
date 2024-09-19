@@ -2,6 +2,7 @@
 import {Camera, House, TableProperties} from "lucide-react"
 import {d1, d2, d3} from "./NavbarStates/NavbarStates"
 import SVGMorph from "./SVGMorph"
+import { Link } from "react-router-dom"
 
 const output = [d1, d2, d3]
 
@@ -38,17 +39,17 @@ export const Navbar = (props : {setPageIndex : React.Dispatch<React.SetStateActi
                 {/* <img src={menuStateOne} className="" alt="" /> */}
 
                 <div className="absolute p-2 flex w-[274px] h-full items-center z-20 justify-around">
-                    <button onClick={() => setPageIndexHandler(0)}>
+                    <Link to="/admin/map" onClick={() => setPageIndexHandler(0)}>
                         <House color="white"/>
-                    </button>
+                    </Link>
 
-                    <button onClick={() => setPageIndexHandler(1)}>
+                    {/* <button onClick={() => setPageIndexHandler(1)}>
                         <Camera color="white"/>
                     </button>
-                    
-                    <button onClick={() => setPageIndexHandler(2)}>
+                     */}
+                    <Link to="/camera/*" onClick={() => setPageIndexHandler(2)}>
                         <TableProperties color="white"/>
-                    </button>
+                    </Link>
                 </div>
 
 

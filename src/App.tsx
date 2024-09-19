@@ -20,8 +20,9 @@ function App() {
       <Route path="/camera/*" element={<WebcamComponent/>} />
       {/* <Route path="*" element={<NotFound />} /> */}
     </Routes>
+
+    <Navbar setPageIndex={setPageIndex} pageIndex={pageIndex}/>
     </BrowserRouter>
-      <Navbar setPageIndex={setPageIndex} pageIndex={pageIndex}/>
       </>
 
 )

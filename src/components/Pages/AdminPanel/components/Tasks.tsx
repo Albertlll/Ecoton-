@@ -1,6 +1,9 @@
 import React, { useState, useEffect, ChangeEvent } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { instanceAxios } from '../../../../../httpConfig';
+import gornostay from './animals/gornostay.jpeg'
+import philin from './animals/ph.jpeg'
+import udod from './animals/udod.jpeg'
 
 interface Task {
   title: string;
@@ -107,25 +110,29 @@ const TaskPopup: React.FC<TaskPopupProps> = ({ onClose, onCreateTask }) => {
 };
 
 const Tasks: React.FC = () => {
-  const [tasks, setTasks] = useState<Task[]>([]);
+  const [tasks, setTasks] = useState<Task[]>([
+    { title: 'Горностай', image: gornostay, description: 'Поищите этого забавного проворливого хищника!' },
+    { title: 'Удод', image: udod, description: 'Прелесная забавная птичка. Приглашаем вас поучаствовать в квесте и поискать его. Мы уверены удача вам улыбнется!' },
+    { title: 'Собака', image: philin, description: 'Квест филина! Филин грациозное создание, попытайтесь найти его!' },
+  ]);
   const [isPopupOpen, setIsPopupOpen] = useState(false);
 
-  useEffect(() => {
-    const fetchTasks = async () => {
-      try {
-        const response = await instanceAxios.get('/api/v1/tasks');
-        setTasks(response.data);
-      } catch (error) {
-        console.error('Error fetching tasks:', error);
-      }
-    };
+  // useEffect(() => {
+  //   const fetchTasks = async () => {
+  //     try {
+  //       const response = await instanceAxios.get('/api/v1/tasks');
+  //       setTasks(response.data);
+  //     } catch (error) {
+  //       console.error('Error fetching tasks:', error);
+  //     }
+  //   };
 
-    fetchTasks();
-  }, []);
+  //   fetchTasks();
+  // }, []);
 
   const handleCreateTask = async (newTask: Task) => {
     // try {
-      const response = await instanceAxios.post('/api/v1/tasks', newTask);
+      // const response = await instanceAxios.post('/api/v1/tasks', newTask);
       setTasks([...tasks, newTask]);
       setIsPopupOpen(false);
     // } catch (error) {
@@ -143,7 +150,7 @@ const Tasks: React.FC = () => {
       </button>
       {tasks.map((task, index) => (
         <div key={index} className="w-full bg-white rounded-[30px] mb-4 p-4 flex">
-          <img src={task.image} alt={task.title} className="w-1/3 h-48 object-cover rounded-l-[30px]" />
+          <img src={task.image} alt={task.title} className="w-1/3 h-64 object-cover rounded-[30px]" />
           <div className="w-2/3 pl-4">
             <h2 className="text-2xl font-bold mb-2">{task.title}</h2>
             <p className="text-gray-600 mb-2">Москворецкий парк</p>

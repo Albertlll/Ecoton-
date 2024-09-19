@@ -69,18 +69,10 @@ export default () => {
 
   const handleJustSender = () => {
 
+    setDataLoaded("(здесь нейросеть выдает что обнаружила на фотографии)");
 
 
 
-    instanceAxios.post("/api/v1/submissions", {
-      image : "dataUri",
-      latitude: 55.777777,
-      longitude: 37.374444,
-      
-    }).then( (data) => {
-        setDataLoaded(data.data.object_class);
-      }
-    )
   }
 
 
@@ -212,7 +204,7 @@ export default () => {
                   </button>
 
                   <button
-                    onClick={handleConfirm}
+                    onClick={handleJustSender}
                     className="bg-green-500 text-white px-4 py-2 rounded"
                   >
                     Отправка

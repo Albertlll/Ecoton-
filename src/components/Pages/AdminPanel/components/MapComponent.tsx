@@ -8,6 +8,28 @@ const MapComponent: React.FC = () => {
     zoom: 9,
   };
 
+
+
+  
+  const statistics = {
+      "Урагус сибирский": 5,
+      "Серый сорокопут": 2,
+      "Рыжая вечерница": 0,
+      "Горностай": 3,
+      "Хохлатка полая": 1,
+      "Белоспинный дятел": 4,
+      "Обыкновенная кутора": 0,
+      "Обыкновенный еж": 6,
+      "Зимородок": 2,
+      "Удод": 1,
+      "Незабудка болотная": 8,
+      "Филин": 1,
+      "Лесной хорек": 0,
+      "Лютик длиннолистный": 3
+    }
+
+
+
   const PARK_COORDINATES = {
     "bottom_left": [55.736431, 37.331806],
     "top_right": [55.811328, 37.449476]
@@ -52,16 +74,21 @@ const MapComponent: React.FC = () => {
 
           >
         </Rectangle>
-        <Placemark
+        {/* <Placemark
           modules={["geoObject.addon.balloon"]}
           defaultGeometry={[55.75, 37.57]}
           properties={{
             balloonContentBody:
               "This is balloon loaded by the Yandex.Maps API module system",
           }}
-        />
+        /> */}
       </Map>
     </YMaps>
+
+
+
+
+
 
 
 
@@ -69,8 +96,8 @@ const MapComponent: React.FC = () => {
     <div>
       
 
-          {Object.entries(stat).map(([name, count], index) => 
-            <div key={index} className='flex flex-row justify-between w-full items-center mb-2'>
+          {Object.entries(statistics).map(([name, count], index) => 
+            <div key={index} className='flex flex-row justify-start w-full items-center gap-10 mb-2'>
               <div className='w-1/2 text-left'>{name}</div>
               <div className='w-1/2 text-right'>{count}</div>
             </div>

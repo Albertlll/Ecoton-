@@ -2,9 +2,6 @@ import axios from "axios"
 
 
 export const instanceAxios = axios.create({
-  baseURL: 'https://ecofriend-api.ru.tuna.am',
+  baseURL: 'https://localhost:8000',
   withCredentials: true,
-  headers: {
-    'Access-Control-Allow-Origin': window.location.origin
-  }
-  });
+});
