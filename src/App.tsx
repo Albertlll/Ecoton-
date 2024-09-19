@@ -16,8 +16,8 @@ function App() {
     
     <BrowserRouter>
     <Routes>
-      <Route path="/admin" element={<AdminPanel/>} />
-      <Route path="/camera" element={<WebcamComponent/>} />
+      <Route path="/admin/*" element={<AdminPanel/>} />
+      <Route path="/camera/*" element={<WebcamComponent/>} />
       {/* <Route path="*" element={<NotFound />} /> */}
     </Routes>
     </BrowserRouter>

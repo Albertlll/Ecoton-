@@ -46,10 +46,10 @@ const AdminPanel: React.FC = () => {
 
       <div className=' row-[2/-1] col-[3/-1]'>
       <main className="flex-1 rounded-[20px] w-full h-full overflow-x-hidden overflow-y-auto bg-gray-200 p-4">
-           <Routes>
-             <Route path="admin/map" element={<MapComponent />} />
+           <Routes >
+             <Route path="/map" element={<MapComponent />} />
              <Route path="admin/users" element={<Users />} />
-             <Route path="admin/tasks" element={<Tasks />} />
+             <Route path="/tasks" element={<Tasks />} />
              <Route path="admin/reports" element={<Reports />} />
            </Routes>
          </main>
