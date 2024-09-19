@@ -1,50 +1,14 @@
-# React + TypeScript + Vite
+# Ecofriend frontend (demo)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Только фронтенд часть приложения. Имеет 2 части (переключаются навбаром внизу) - пользователя и панель админа.
 
-Currently, two official plugins are available:
+## Часть пользователя (предподчительно использование на мобильных устройствах)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+В ней есть камера. Необходимо принять все запросы (на камеру и на геолокацию). После этого будет возможность сделать фото. После этого в окне подтверждения можно либо отправить на сервер, либо отменить загрузку.
 
-## Expanding the ESLint configuration
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## Часть админа (предподчительно использование на десктоп устройствах)
 
-- Configure the top-level `parserOptions` property like this:
+Имеет 2 части - карта и задачи. На карте подразумевается, что демонстрируется статистика животных, сфотографированных нужном парке (выделен зеленым).
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
-
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
-
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
-
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+В части задачах можно добавить (через соответствующую кнопку) и посмотреть текущие квесты для пользователей платформы.
